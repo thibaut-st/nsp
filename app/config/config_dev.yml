@@ -39,3 +39,20 @@ monolog:
 
 #swiftmailer:
 #    delivery_addresses: ['me@example.com']
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    from_email:
+        address: "%mailer_user%"
+        sender_name: "%mailer_user%"
+
+knp_menu:
+    # use "twig: false" to disable the Twig extension and the TwigRenderer
+    twig:
+        template: KnpMenuBundle::menu.html.twig
+    #  if true, enables the helper for PHP templates
+    templating: false
+    # the renderer to use, list is also available by default
+    default_renderer: twig
