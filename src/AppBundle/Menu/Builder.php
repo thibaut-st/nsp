@@ -44,13 +44,15 @@ class Builder implements ContainerAwareInterface
         $checker = $this->container->get('security.authorization_checker');
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class','links-top list-inline');
+        $menu->addChild('Welcome', array('route' => 'homepage'));
         if ($checker->isGranted('ROLE_ADMIN')) {
 //            $menu->addChild('admin panel', array('route' => 'admin'));
         }
         if ($checker->isGranted('ROLE_USER')) {
-            $menu->addChild('account', array('route' => 'fos_user_security_login'));
+            $menu->addChild('Wish list', array('route' => 'wishlist_index'));
+            $menu->addChild('Items', array('route' => 'item_index'));
+            $menu->addChild('account', array('route' => 'fos_user_profile_show'));
             $menu->addChild('logout', array('route' => 'fos_user_security_logout'));
-            $menu->addChild('user list', array('route' => 'user_index'));
         } else {
             $menu->addChild('registration', array('route' => 'fos_user_registration_register'));
             $menu->addChild('login', array('route' => 'fos_user_security_login'));
